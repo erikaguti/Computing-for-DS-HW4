@@ -6,6 +6,8 @@
 #  and the total average of death/confirmed among those countries
 # for those countries that have more than 500, 1000 and 5000
 # active cases respectively.
+
+# filter first, then compute the death/confirmed, then compute the average
 # Follow DRY principles in order to complete this exercise.
 #
 #
@@ -25,6 +27,6 @@ covid = pd.read_csv(path + 'covid.csv')
 covid['Deaths/Confirmed'] = covid.Deaths/covid.Confirmed
 
 for n in [500,1000,5000]:
-    print('''countries with > ''' + str(n) + ''' active cases:
-''', covid[covid.Active > n][['Country','Deaths/Confirmed']],'''
+    print('''total average of death/confirmed for countries with > ''' + str(n) + ''' active cases:
+''', covid[covid.Active > n][['Deaths/Confirmed']].mean(),'''
           ''')
